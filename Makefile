@@ -35,7 +35,8 @@ AUXS = overview.aux \
        $(main).psm  \
        $(subst /,/paper.aux,$(wildcard paper*/))
 
-BBLS = $(main).bbl
+BBLS = $(main).bbl \
+       $(main).bcf
 
 
 # Rules:
@@ -44,7 +45,7 @@ default: all
 
 all: $(main)
 #
-$(main): $(SRCS) $(BBLS)
+$(main): $(SRCS) $(AUXS) $(BBLS)
 	@echo building $(main) with $(TEX)
 	@$(TEX) $(TEX_FLAGS) -draftmode $(main) #> /dev/null
 	@sed -i -e 's/toPaper/Paper/g' thesis.out	
