@@ -1,0 +1,58 @@
+%% ---------------------------------------------------------------
+%% jfm biblatex citation style
+%% Derived from biblatex-bwl
+%% Maintained by Ashwin Vishnu Mohanan
+%% Contributed by Herbert Voß
+%% (C) ashwinvis@protonmail.com
+%% Released under the LaTeX Project Public License v1.3c or later
+%% See http://www.latex-project.org/lppl.txt
+%% ---------------------------------------------------------------
+%% 
+
+\ProvidesFile{jfm.bbx}[2012/05/19 v0.01 biblatex bibliography style]
+
+% Load the standard style to avoid copy-pasting unnecessary material
+\RequireBibliographyStyle{authoryear-icomp}
+
+\ExecuteBibliographyOptions{dashed=false}
+
+\renewbibmacro*{publisher+location+date}{%
+  \printlist{publisher}%
+  \iflistundef{publisher}
+    {\setunit*{\addcomma\space}}
+    {\setunit*{\addcolon\space}}%
+  \printlist{location}%
+  \setunit*{\addcomma\space}%
+  \usebibmacro{date}%
+  \newunit}
+
+\renewbibmacro*{volume+number+eid}{%
+  \printfield{volume}%
+%  \setunit*{\adddot}%
+  \iffieldundef{number}{}{(\printfield{number})}%
+  \setunit{\addcomma\space}%
+  \printfield{eid}}
+
+% You could also clear the fields you don't want printed:
+\AtEveryBibitem{%
+  \clearfield{day}%
+  \clearfield{month}%
+  \clearfield{endday}%
+  \clearfield{endmonth}%
+}
+
+% makes volume of journal bold
+\DeclareFieldFormat[article]{volume}{\textbf{#1}\space}
+
+% removes pagination (p./pp.) before page numbers
+\DeclareFieldFormat{pages}{#1}
+%%
+
+% Biblatex hacks
+% prints author names as small caps
+% http://www.khirevich.com/latex/biblatex/
+\renewcommand{\mkbibnamefirst}[1]{\textsc{#1}}
+\renewcommand{\mkbibnamelast}[1]{\textsc{#1}}
+\renewcommand{\mkbibnameprefix}[1]{\textsc{#1}}
+\renewcommand{\mkbibnameaffix}[1]{\textsc{#1}}
+\endinput
