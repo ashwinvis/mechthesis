@@ -14,7 +14,7 @@
 % Load the standard style to avoid copy-pasting unnecessary material
 \RequireBibliographyStyle{authoryear-icomp}
 
-\ExecuteBibliographyOptions{dashed=false}
+\ExecuteBibliographyOptions{maxcitenames=2,maxbibnames=100,mergedate=false,dashed=false}
 
 \renewbibmacro*{publisher+location+date}{%
   \printlist{publisher}%
@@ -33,13 +33,30 @@
   \setunit{\addcomma\space}%
   \printfield{eid}}
 
+%Modification of mergedate=false
+%Changes: year without parens, issue without date
+\renewbibmacro*{date+extradate}{%
+  \iffieldundef{labelyear}
+    {}
+    {\printtext[]{\printlabeldateextra}}}%
+\renewbibmacro*{bbx:ifmergeddate}{\@secondoftwo}%
+\renewbibmacro*{issue+date}{%
+  \ifboolexpr{%
+    test {\iffieldundef{issue}}
+  }{}
+   {\printtext[parens]{%
+      \printfield{issue}%
+      }
+   }%
+\newunit}
+
 % You could also clear the fields you don't want printed:
-\AtEveryBibitem{%
-  \clearfield{day}%
-  \clearfield{month}%
-  \clearfield{endday}%
-  \clearfield{endmonth}%
-}
+% \AtEveryBibitem{%
+%   \clearfield{day}%
+%   \clearfield{month}%
+%   \clearfield{endday}%
+%   \clearfield{endmonth}%
+% }
 
 % makes volume of journal bold
 \DeclareFieldFormat[article]{volume}{\textbf{#1}\space}
@@ -51,8 +68,11 @@
 % Biblatex hacks
 % prints author names as small caps
 % http://www.khirevich.com/latex/biblatex/
-\renewcommand{\mkbibnamefirst}[1]{\textsc{#1}}
-\renewcommand{\mkbibnamelast}[1]{\textsc{#1}}
-\renewcommand{\mkbibnameprefix}[1]{\textsc{#1}}
-\renewcommand{\mkbibnameaffix}[1]{\textsc{#1}}
+\AtBeginBibliography{%
+  \renewcommand{\mkbibnamegiven}[1]{\textsc{#1}}
+  \renewcommand{\mkbibnamefamily}[1]{\textsc{#1}}
+  \renewcommand{\mkbibnameprefix}[1]{\textsc{#1}}
+  \renewcommand{\mkbibnamesuffix}[1]{\textsc{#1}}
+}
+
 \endinput
