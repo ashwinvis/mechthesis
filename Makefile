@@ -11,7 +11,7 @@ main = thesis
 TEX = pdflatex
 TEX_FLAGS =
 
-BIB = bibtex
+BIB = biber
 BIB_FLAGS =
 
 
@@ -35,8 +35,8 @@ AUXS = overview.aux \
        $(main).psm  \
        $(subst /,/paper.aux,$(wildcard paper*/))
 
-BBLS = overview.bbl \
-       $(subst /,/paper.bbl,$(wildcard paper*/))
+BBLS = $(main).bbl
+
 
 # Rules:
 #
@@ -44,7 +44,7 @@ default: all
 
 all: $(main)
 #
-$(main): $(SRCS) $(AUXS) $(BBLS)
+$(main): $(SRCS) $(BBLS)
 	@echo building $(main) with $(TEX)
 	@$(TEX) $(TEX_FLAGS) -draftmode $(main) #> /dev/null
 	@sed -i -e 's/toPaper/Paper/g' thesis.out	
@@ -54,15 +54,15 @@ $(AUXS): $(SRCS)
 	@echo building $(main) with $(TEX) [for $@]
 	@$(TEX) $(TEX_FLAGS) -draftmode $(main) #> /dev/null
 
-%.bbl: %.aux $(main).bib
+%.bbl: %.bcf $(main).bib
 	@echo building $@ with $(BIB)
-	@$(BIB) $(BIB_FLAGS) $(basename $@) #> /dev/null
+	@$(BIB) $(BIB_FLAGS) $< #> /dev/null
 #
 clean: clean_papers clean_thesis
 
 clean_thesis:
 	@echo cleaning thesis
-	@rm -f *.ps *.dvi *.aux *.toc *.log *.out *.bbl *.blg *.pls *.psm *~ *.syntex.gz
+	@rm -f *.ps *.dvi *.aux *.toc *.log *.out *.bbl *.blg *.pls *.psm *~ *.synctex.gz *.bcf *.run.xml
 
 clean_papers:
 	@echo cleaning papers

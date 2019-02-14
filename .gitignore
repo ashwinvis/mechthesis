@@ -6,6 +6,8 @@
 *.toc
 *.bbl
 *.blg
+*.bcf
+*.run.xml
 *~
 *.swp
 .DS_Store

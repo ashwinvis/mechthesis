@@ -619,11 +619,11 @@
 	\refstepcounter{frontsection}%
 	\noindent {\bf{Division of work between authors}}%
 	\par%
-	\newcounter{listcount}\setcounter{listcount}{0}%
+	\newcounter{divlistcount}\setcounter{divlistcount}{0}%
 	\newcommand\paperitem{%
-		\stepcounter{listcount}
+		\stepcounter{divlistcount}
 		\smallskip\par%
-		\noindent{\bf\papername~\thelistcount.}~%
+		\noindent{\bf\papername~\thedivlistcount.}~%
 	}%
 	\noindent\ignorespaces%
 }{%
