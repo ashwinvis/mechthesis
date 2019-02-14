@@ -69,13 +69,19 @@
 %%
 
 % Biblatex hacks
-% prints author names as small caps
 % http://www.khirevich.com/latex/biblatex/
 \AtBeginBibliography{%
+  % prints author names as small caps
   \renewcommand{\mkbibnamegiven}[1]{\textsc{#1}}
   \renewcommand{\mkbibnamefamily}[1]{\textsc{#1}}
   \renewcommand{\mkbibnameprefix}[1]{\textsc{#1}}
   \renewcommand{\mkbibnamesuffix}[1]{\textsc{#1}}
 }
+
+% reduce font size
+\renewcommand*{\bibfont}{\small}
+
+%Format subbibliography headings as subsection
+\defbibheading{subbibliography}[\refname]{\subsection*{\textsc{#1}}}
 
 \endinput
