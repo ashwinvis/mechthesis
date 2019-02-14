@@ -16,6 +16,8 @@
 
 \ExecuteBibliographyOptions{maxcitenames=2,maxbibnames=100,mergedate=false,dashed=false}
 
+% =========================== Redefined macros ==============================
+
 \renewbibmacro*{publisher+location+date}{%
   \printlist{publisher}%
   \iflistundef{publisher}
@@ -35,6 +37,7 @@
 
 %Modification of mergedate=false
 %Changes: year without parens, issue without date
+%https://github.com/plk/biblatex/blob/dev/tex/latex/biblatex/bbx/authoryear.bbx
 \renewbibmacro*{date+extradate}{%
   \iffieldundef{labelyear}
     {}
