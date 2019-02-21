@@ -8,7 +8,7 @@
 #
 main = thesis
 
-TEX = pdflatex
+TEX = pdflatex -shell-escape -interaction=nonstopmode
 TEX_FLAGS =
 
 BIB = bibtex
@@ -63,6 +63,7 @@ clean: clean_papers clean_thesis
 clean_thesis:
 	@echo cleaning thesis
 	@rm -f *.ps *.dvi *.aux *.toc *.log *.out *.bbl *.blg *.pls *.psm *~ *.syntex.gz
+	rm -rf _minted* */_minted*
 
 clean_papers:
 	@echo cleaning papers
