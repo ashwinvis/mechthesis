@@ -14,7 +14,14 @@
 % Load the standard style to avoid copy-pasting unnecessary material
 \RequireBibliographyStyle{authoryear-icomp}
 
-\ExecuteBibliographyOptions{maxcitenames=2,maxbibnames=100,mergedate=false,dashed=false}
+\ExecuteBibliographyOptions{%
+  maxcitenames=2,
+  maxbibnames=100,
+  mergedate=false,
+  dashed=false,
+  firstinits=true,
+  % terseinits=true
+}
 
 % =========================== Redefined macros ==============================
 
@@ -61,12 +68,24 @@
 %   \clearfield{endmonth}%
 % }
 
+% last-name / family-name first
+% https://tex.stackexchange.com/questions/36240/biblatex-entries-with-last-names-first-and-year-after-authors#36247
+\DeclareNameAlias{sortname}{last-first}
+
 % makes volume of journal bold
 \DeclareFieldFormat[article]{volume}{\textbf{#1}\space}
 
 % removes pagination (p./pp.) before page numbers
 \DeclareFieldFormat{pages}{#1}
 %%
+
+% no quotes while displaying title
+\DeclareFieldFormat[article,inbook,incollection,inproceedings,patent,thesis,unpublished]{citetitle}{#1}
+\DeclareFieldFormat[article,inbook,incollection,inproceedings,patent,thesis,unpublished]{title}{#1}
+
+% no In: prefix before publisher name
+% http://tex.stackexchange.com/questions/10682
+\renewbibmacro{in:}{}
 
 % Biblatex hacks
 % http://www.khirevich.com/latex/biblatex/
@@ -77,6 +96,18 @@
   \renewcommand{\mkbibnameprefix}[1]{\textsc{#1}}
   \renewcommand{\mkbibnamesuffix}[1]{\textsc{#1}}
 }
+
+%no comma
+\renewcommand*{\finalandcomma}{}
+
+% no "and" before final name in bibliography
+% TODO: find a good way to escape ampersand
+% \newrobustcmd{\bibambr}{\&}
+% \renewcommand*{\finalnamedelim}{%
+%  \ifbibliography{%
+%      \ifnumgreater{\value{liststop}}{2}{\finalandcomma}{}%
+%    \addspace\bibambr\addspace}
+% }
 
 % reduce font size
 \renewcommand*{\bibfont}{\small}
