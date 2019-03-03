@@ -101,13 +101,12 @@
 \renewcommand*{\finalandcomma}{}
 
 % no "and" before final name in bibliography
-% TODO: find a good way to escape ampersand
-% \newrobustcmd{\bibambr}{\&}
-% \renewcommand*{\finalnamedelim}{%
-%  \ifbibliography{%
-%      \ifnumgreater{\value{liststop}}{2}{\finalandcomma}{}%
-%    \addspace\bibambr\addspace}
-% }
+% https://tex.stackexchange.com/questions/459362/ampersand-as-namessep-in-biblatex-label
+\newrobustcmd*{\ampersand}{\&}
+\DeclareDelimFormat{finalnamedelim}{\addspace\&\space}
+\DeclareDelimFormat[bib]{finalnamedelim}{%
+  \ifnumgreater{\value{liststop}}{2}{\finalandcomma}{}%
+  \addspace\ampersand\space}
 
 % reduce font size
 \renewcommand*{\bibfont}{\small}
