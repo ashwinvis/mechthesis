@@ -486,7 +486,7 @@
 	Royal Institute of Technology\par%
 	Department of Mechanics\par%
 	SE-100 44 Stockholm, Sweden\par%
-}%	
+}%
 \def\makecoverpage{%
 	\thispagestyle{empty}%
 	\setcounter{page}{1}%
@@ -1160,7 +1160,7 @@
 	\vskip 8\p@ \@plus 2\p@ \@minus 1\p@
 }%
 \def\makepapersummary{%
-  \chapter*{Summary of the papers}
+  \chapter*{Paper Abstracts}
   \IfFileExists{\jobname.pls}{{\raggedbottom\input{\jobname.psm}}\flushbottom}{}
 }%
 %------------------------------------------------------------------------------
