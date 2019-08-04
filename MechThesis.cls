@@ -522,7 +522,11 @@
 	\noindent\ignorespaces\@info\bigskip\par%
 	\otherlanguage{english}
 	%
-	\noindent\copyright\@author~\@year%
+    \noindent This work is partially open access. Part I is licensed under a
+    Creative Commons Attribution 4.0 International License, with exception to
+    certain figures for which the copyright mentioned in the caption apply.
+    Part II fall under different licenses.
+	\noindent\ccby\@author~\@year%
 	\smallskip\par%
 	%
 	\noindent\@printer~\@year%
