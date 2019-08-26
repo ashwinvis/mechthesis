@@ -359,7 +359,7 @@
 %
 \expandafter\@iden
 %
-\usepackage[dvipsnames]{xcolor}\relax
+\usepackage[cmyk,dvipsnames]{xcolor}\relax
 \RequirePackage{amsmath}\relax
 \RequirePackage{amsfonts}\relax
 \RequirePackage{amssymb}\relax
