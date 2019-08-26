@@ -525,7 +525,7 @@
     \noindent This work is partially open access. Part I is licensed under a
     Creative Commons Attribution 4.0 International License, with exception to
     certain figures for which the copyright mentioned in the caption apply.
-    Part II fall under different licenses.
+    Part II may fall under different licenses.\par%
 	\noindent\ccby\@author~\@year%
 	\smallskip\par%
 	%
